@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
+
+    <!-- added this to pull right from cdn you can remove-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <title>CheckBook Application For Web</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar">...</div>
+<div class="container">
+    <!-- Static navbar -->
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <!--Usage of models we wrote in WepAppController th:text="'Welcome to basic Bootstrap with Spring Boot created by ' + ${username} -->
+        <h3 th:text="'Welcome to basic Bootstrap with Spring Boot created by ' + ${username}"></h3>
+        <p th:text="'Current date:  ' + ${#dates.format(dateTime, 'dd MMM yyyy HH:mm')}"></p>
+        <!--<p> is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work.</p>-->
+        <p>
+            <a class="btn btn-lg btn-primary" href="/" role="button">Go Back Home &raquo;</a>
+        </p>
+    </div><!-- /jumbotron -->
+</div> <!-- /container -->
+<div>
+    <h1>
+        Your Expenses
+    </h1>
+</div>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Paid To</th>
+            <th>Invoice Amount</th>
+            <th>Payment Method</th>
+            <th scope="col">
+                <!--keep empty, this is just needed to make the table not caddywhompus https://www.urbandictionary.com/define.php?term=caddywhompus  -->
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="expense : ${expenseList}">
+            <td th:text="${expense.getDate()}"></td>
+            <td th:text="${expense.getCategory()}"></td>
+            <td th:text="${expense.getPaidTo()}"></td>
+            <td th:text="${expense.getAmount()}"></td>
+            <td th:text="${expense.getPaymentMethod()}"></td>
+            <form action="#" th:action="@{|/modifyexpense/${expense.getExpenseID()}|}" th:object="${expense}"
+                  method="post">
+                <td><input class="btn btn-warning" type="submit" value="Modify"></td>
+            </form>
+            <form action="#" th:action="@{|/deleteexpense/${expense.getExpenseID()}|}" th:object="${expense}"
+                  method="post">
+                <td><input class="btn btn-danger" type="submit" value="Delete"></td>
+            </form>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/footer">...</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster, and that's just how the fuck you're spose to do it -->
+<!-- all 3 script tags just pulled from the CDN you can still download and include them in the project if you don't want to link to the externally -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+</body>
+</html>

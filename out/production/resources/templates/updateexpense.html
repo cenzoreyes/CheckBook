@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
+
+    <!-- added this to pull right from cdn you can remove-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <title>CheckBook WebApp</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar">...</div>
+<div>
+    <form action="#" th:action="@{/updateexpense}" th:object="${expense}" method="post">
+        <p>Date: <input type="date" th:field="*{date}" th:value="${expense.getDate()}"/></p>
+        <p>Category: <input type="text" th:field="*{category}" th:value="${expense.getCategory()}"/></p>
+        <p>Amount: $<input type="number" th:field="*{amount}" th:value="${expense.getAmount()}"/></p>
+        <p>Paid To: <input type="text" th:field="*{paidTo}" th:value="${expense.getPaidTo()}"/></p>
+        <p>Payment Method: <input type="text" th:field="*{paymentMethod}" th:value="${expense.getPaymentMethod()}"/></p>
+        <p><input type="hidden" th:field="*{expenseID}" th:value="${expense.getExpenseID()}"/></p>
+        <!--<fieldset>-->
+        <input type="submit" class="btn btn-info" id="submitButton" th:value="Submit">
+        <input type="reset" class="btn btn-info" id="resetButton" name="reset" th:value="Reset"/>
+        <!--<table>-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th>Date</th>-->
+        <!--<th>Category</th>-->
+        <!--<th>Paid To</th>-->
+        <!--<th>Invoice Amount</th>-->
+        <!--<th>Payment Method</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr th:object="expense">-->
+        <!--<td><input th:field="*{expense[__${itemStat.index}__].getDate();}" /></td>-->
+        <!--<td><input th:field="*{expense[__${itemStat.index}__].getCategory();}" /></td>-->
+        <!--<td><input th:field="*{expense[__${itemStat.index}__].getPaidTo();}" /></td>-->
+        <!--<td><input th:field="*{expense[__${itemStat.index}__].getAmount();}" /></td>-->
+        <!--<td><input th:field="*{expense[__${itemStat.index}__].getPaymentMethod();}" /></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</fieldset>-->
+    </form>
+</div>
+<div th:replace="fragments/footer">...</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster, and that's just how the fuck you're spose to do it -->
+<!-- all 3 script tags just pulled from the CDN you can still download and include them in the project if you don't want to link to the externally -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+</body>
+</html>

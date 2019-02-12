@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <!-- added this to pull right from cdn you can remove-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+
+</head>
+
+<style>
+
+    #form {
+        padding-top: 3%;
+    }
+
+</style>
+<body>
+<div th:replace="fragments/anonymousnav">...</div>
+<div class="container">
+    <div class="form-group col-sm-6" id="form">
+        <h3>Login to Checkbook web app</h3>
+
+        <!-- Binds login command object and action creates a new url for doLogin -->
+        <form th:object="${LoginCommand}" th:action="@{/doLogin}" method="post">
+
+
+            <!-- alerts if field has errors -->
+            <label for="un">Username</label>
+            <input type="text" id="un" th:field="*{username}" class="form-control"/>
+
+
+            <br/>
+
+            <label for="pw">Password</label>
+            <input type="password" id="pw" th:field="*{password}" class="form-control"/>
+            <br/>
+            <input value="Login" type="submit" class="btn btn-primary"/>
+        </form>
+
+        <br/>
+        <div class="alert-danger" role="alert">
+
+            <h3 th:text=${myError}></h3>
+
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer">...</div>
+
+</body>
+</html>

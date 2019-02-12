@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Contact Us</title>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <!-- added this to pull right from cdn you can remove-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    <title>Contact Us - CheckBook</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+
+<div th:replace="fragments/navbar">...</div>
+
+<div class="container">
+    <div class="alert-success text-center" role="alert">
+        <h4 th:text=${successMessage}></h4>
+    </div>
+
+    <div class="alert-danger text-center" role="alert">
+        <h4 th:text=${errorMessage}></h4>
+    </div>
+
+
+    <div class="form-group col-lg-12" id="ContactUsForm">
+
+        <h3>Fill out the form below to contact us</h3>
+
+        <form th:object="${MyEmail}" th:action="@{/sendContactUs}" method="post">
+
+            <label for="yourMessage">your feedback is appreciated</label><textarea class="form-control" id="yourMessage"
+                                                                                   rows="5"
+                                                                                   th:field="${MyEmail.content}"></textarea>
+
+            <br/>
+
+            <input value="Send Your Message" type="submit" class="btn btn-primary"/>
+
+        </form>
+    </div>
+
+    <hr style="border-top: 1px solid #696969">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>Thank you for taking the time to complete a contact us form to let us know we are doing. Your
+                    feedback is much appreciated and reply times can vary but most often emails are read within the
+                    day</p>
+            </div>
+
+
+            <div class="col-md-6">
+                <h4>In a rush and can not complete the form now?</h4>
+                <p>Feel free to email us anytime at <a href="mailto:checkbook.services@gmail.com">
+                    checkbook.services@gmail.com</a></p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer">...</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster, and thats just how the fuck you're spose to do it -->
+<!-- all 3 script tags just pulled from the CDN you can still download and include them in the project if you don't want to link to the externally -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
